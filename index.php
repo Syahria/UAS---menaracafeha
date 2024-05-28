@@ -1,6 +1,31 @@
+<?php
+include('koneksi.php');
+
+// Proses data ulasan yang dikirimkan melalui formulir
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = clean_input($_POST["username"]);
+    $ulasan = clean_input($_POST["ulasan"]);
+
+    // Simpan ulasan ke dalam database
+    $sql = "INSERT INTO reviews (username, ulasan) VALUES ('$username', '$ulasan')";
+
+    if ($conn->query($sql) === TRUE) {
+        // Jika data berhasil disimpan, tampilkan modal sukses
+        echo '<script>$("#successModal").modal("show");</script>';
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// Tutup koneksi database
+$conn->close();
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
