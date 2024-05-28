@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ulasan = $_POST['ulasan'];
 
     // Menyiapkan statement SQL untuk menyimpan ulasan ke dalam tabel
-    $sql = "INSERT INTO pesan (username, ulasan) VALUES ('$username', '$ulasan')";
+    $sql = "INSERT INTO reviews (username, ulasan) VALUES ('$username', '$ulasan')";
 
     // Menjalankan query
     if ($conn->query($sql) === TRUE) {
